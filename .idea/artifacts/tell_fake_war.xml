@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tell-fake:war">
+    <output-path>$PROJECT_DIR$/tell-fake/target</output-path>
+    <root id="archive" name="tell-fake.war">
+      <element id="artifact" artifact-name="tell-fake:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="parse-q:war">
+    <output-path>$PROJECT_DIR$/parse-q/target</output-path>
+    <root id="archive" name="parse-q.war">
+      <element id="artifact" artifact-name="parse-q:war exploded" />
+    </root>
+  </artifact>
+</component>

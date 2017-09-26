@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app-client/app-client.iml" filepath="$PROJECT_DIR$/app-client/app-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dragon.iml" filepath="$PROJECT_DIR$/dragon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/magic-q/magic-q.iml" filepath="$PROJECT_DIR$/magic-q/magic-q.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parse-q/parse-q.iml" filepath="$PROJECT_DIR$/parse-q/parse-q.iml" />
+      <module fileurl="file://$PROJECT_DIR$/persist-q/persist-q.iml" filepath="$PROJECT_DIR$/persist-q/persist-q.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tell-fake/tell-fake.iml" filepath="$PROJECT_DIR$/tell-fake/tell-fake.iml" />
+    </modules>
+  </component>
+</project>

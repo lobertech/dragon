@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.tokyohot.shibuya:finger-print-base:1.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tokyohot/shibuya/finger-print-base/1.0.0-SNAPSHOT/finger-print-base-1.0.0-20170908.062154-5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tokyohot/shibuya/finger-print-base/1.0.0-SNAPSHOT/finger-print-base-1.0.0-20170908.062154-5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/tokyohot/shibuya/finger-print-base/1.0.0-SNAPSHOT/finger-print-base-1.0.0-20170908.062154-5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

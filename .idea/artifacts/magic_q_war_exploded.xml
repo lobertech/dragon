@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="magic-q:war exploded">
+    <output-path>$PROJECT_DIR$/magic-q/target/magic-q</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="magic-q" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="archive" name="tell-fake-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="tell-fake" />
+          </element>
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/com/tokyohot/shibuya/contract/1.0-SNAPSHOT/contract-1.0-20170908.022946-3.jar" output-file-name="contract-1.0-SNAPSHOT.jar" />
+          <element id="archive" name="parse-q-1.0.0-SNAPSHOT.jar">
+            <element id="module-output" name="parse-q" />
+          </element>
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/com/tokyohot/shibuya/finger-print-base/1.0.0-SNAPSHOT/finger-print-base-1.0.0-20170908.062154-5.jar" output-file-name="finger-print-base-1.0.0-SNAPSHOT.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/com/tokyohot/shibuya/collector-parser/1.0-SNAPSHOT/collector-parser-1.0-20170908.022948-3.jar" output-file-name="collector-parser-1.0-SNAPSHOT.jar" />
+          <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.2.37" />
+          <element id="library" level="project" name="Maven: com.jsoniter:jsoniter:0.9.15" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/magic-q/target/magic-q/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="magic-q/web/Web" />
+    </root>
+  </artifact>
+</component>

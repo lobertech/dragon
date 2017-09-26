@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="persist-q:war">
+    <output-path>$PROJECT_DIR$/persist-q/target</output-path>
+    <root id="archive" name="persist-q.war">
+      <element id="artifact" artifact-name="persist-q:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="app-client" />
+        <module name="magic-q" />
+        <module name="parse-q" />
+        <module name="persist-q" />
+        <module name="tell-fake" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="app-client" target="1.8" />
+      <module name="dragon" target="1.8" />
+      <module name="magic-q" target="1.8" />
+      <module name="parse-q" target="1.8" />
+      <module name="persist-q" target="1.8" />
+      <module name="tell-fake" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
