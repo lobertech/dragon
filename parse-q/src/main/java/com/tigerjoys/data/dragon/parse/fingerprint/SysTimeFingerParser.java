@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.sysTime.SysTimeFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -38,15 +39,14 @@ public class SysTimeFingerParser extends BaseQObjectParser {
 
             Long startSystemTime = sysTimeFinger.getStartSystemTime();
 
-            String sysTimeFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"startSystemTime\":" + startSystemTime.toString() +
-                    "}";
+            StringJoiner sysTimeFingerJsonString = new StringJoiner(",", "{", "}");
+            sysTimeFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            sysTimeFingerJsonString.add("\"start\":" + start.toString());
+            sysTimeFingerJsonString.add("\"end\":" + end.toString());
+            sysTimeFingerJsonString.add("\"error\":" + error.toString());
+            sysTimeFingerJsonString.add("\"startSystemTime\":" + startSystemTime.toString());
 
-            return super.PrefixClassName(fingerprint, sysTimeFingerJsonString);
+            return super.PrefixClassName(fingerprint, sysTimeFingerJsonString.toString());
         }
         return null;
     }

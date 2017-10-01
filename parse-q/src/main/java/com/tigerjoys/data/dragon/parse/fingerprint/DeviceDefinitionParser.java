@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -45,27 +46,24 @@ public class DeviceDefinitionParser extends BaseQObjectParser {
             String aid = deviceDefinition.getAid();
             String tag = deviceDefinition.getTag();
 
-            String ipsJsonArray = "[";
+            StringJoiner ipsJsonArray = new StringJoiner(",", "[", "]");
             for (String ip : ips) {
-                ipsJsonArray += "\"" + ip + "\"" + ",";
+                ipsJsonArray.add("\"" + ip + "\"");
             }
-            ipsJsonArray = ipsJsonArray.substring(0, ipsJsonArray.length() - 1);
-            ipsJsonArray += "]";
 
-            String deviceDefinitionJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"brand\":" + "\"" + brand + "\"" +
-                    "," + "\"model\":" + "\"" + model + "\"" +
-                    "," + "\"api\":" + api.toString() +
-                    "," + "\"abi\":" + "\"" + abi + "\"" +
-                    "," + "\"kernelVersion\":" + "\"" + kernelVersion + "\"" +
-                    "," + "\"kernelBuildAt\":" + "\"" + kernelBuildAt + "\"" +
-                    "," + "\"ips\":" + ipsJsonArray +
-                    "," + "\"aid\":" + "\"" + aid + "\"" +
-                    "," + "\"tag\":" + "\"" + tag + "\"" +
-                    "}";
+            StringJoiner deviceDefinitionJsonString = new StringJoiner(",", "{", "}");
+            deviceDefinitionJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            deviceDefinitionJsonString.add("\"brand\":\"" + brand + "\"");
+            deviceDefinitionJsonString.add("\"model\":\"" + model + "\"");
+            deviceDefinitionJsonString.add("\"api\":" + api.toString());
+            deviceDefinitionJsonString.add("\"abi\":\"" + abi + "\"");
+            deviceDefinitionJsonString.add("\"kernelVersion\":\"" + kernelVersion + "\"");
+            deviceDefinitionJsonString.add("\"kernelBuildAt\":\"" + kernelBuildAt + "\"");
+            deviceDefinitionJsonString.add("\"ips\":" + ipsJsonArray);
+            deviceDefinitionJsonString.add("\"aid\":\"" + aid + "\"");
+            deviceDefinitionJsonString.add("\"tag\":\"" + tag + "\"");
 
-            return super.PrefixClassName(fingerprint, deviceDefinitionJsonString);
+            return super.PrefixClassName(fingerprint, deviceDefinitionJsonString.toString());
         }
         return null;
     }

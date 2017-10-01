@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.screen.ScreenFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -38,15 +39,14 @@ public class ScreenFingerParser extends BaseQObjectParser {
 
             Boolean status = screenFinger.getStatus();
 
-            String screenFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"status\":" + status.toString() +
-                    "}";
+            StringJoiner screenFingerJsonString = new StringJoiner(",", "{", "}");
+            screenFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            screenFingerJsonString.add("\"start\":" + start.toString());
+            screenFingerJsonString.add("\"end\":" + end.toString());
+            screenFingerJsonString.add("\"error\":" + error.toString());
+            screenFingerJsonString.add("\"status\":" + status.toString());
 
-            return super.PrefixClassName(fingerprint, screenFingerJsonString);
+            return super.PrefixClassName(fingerprint, screenFingerJsonString.toString());
         }
         return null;
     }

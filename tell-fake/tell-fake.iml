@@ -27,10 +27,9 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.tokyohot.shibuya:contract:1.0-SNAPSHOT" level="project" />
     <orderEntry type="module" module-name="parse-q" />
-    <orderEntry type="library" name="Maven: com.tokyohot.shibuya:finger-print-base:1.0.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.tokyohot.shibuya:collector-parser:1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.37" level="project" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="module" module-name="persist-q" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-api:2.9.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.logging.log4j:log4j-core:2.9.1" level="project" />
     <orderEntry type="library" name="Maven: com.jsoniter:jsoniter:0.9.15" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.enterprise:cdi-api:1.2.0.redhat-2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.inject:javax.inject:1.0.0.redhat-6" level="project" />

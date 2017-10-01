@@ -6,6 +6,7 @@ import com.tokyohot.shibuya.contract.Conversation;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -36,12 +37,12 @@ public class ConversationParser extends BaseQObjectParser {
             Instant startAt = conversationObj.getStartAt();
             Instant endAt = conversationObj.getEndAt();
 
-            String conversationJsonString = "{" +
-                    "\"ID\":" + "\"" + ID.toString() + "\"" +
-                    "," + "\"startAt\":" + "\"" + startAt.toString() + "\"" +
-                    "," + "\"endAt\":" + "\"" + endAt.toString() + "\"" +
-                    "}";
-            return super.PrefixClassName(conversation, conversationJsonString);
+            StringJoiner conversationJsonString = new StringJoiner(",", "{", "}");
+            conversationJsonString.add("\"ID\":\"" + ID.toString() + "\"");
+            conversationJsonString.add("\"startAt\":\"" + startAt.toString() + "\"");
+            conversationJsonString.add("\"endAt\":\"" + endAt.toString() + "\"");
+
+            return super.PrefixClassName(conversation, conversationJsonString.toString());
         }
         return null;
     }

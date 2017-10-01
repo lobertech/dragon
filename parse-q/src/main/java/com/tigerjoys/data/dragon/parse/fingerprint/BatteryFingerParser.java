@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.battery.BatteryFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -39,15 +40,14 @@ public class BatteryFingerParser extends BaseQObjectParser {
             Integer level = batteryFinger.getLevel();
 
 
-            String batteryFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"level\":" + level.toString() +
-                    "}";
+            StringJoiner batteryFingerJsonString = new StringJoiner(",", "{", "}");
+            batteryFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            batteryFingerJsonString.add("\"start\":" + start.toString());
+            batteryFingerJsonString.add("\"end\":" + end.toString());
+            batteryFingerJsonString.add("\"error\":" + error.toString());
+            batteryFingerJsonString.add("\"level\":" + level.toString());
 
-            return super.PrefixClassName(fingerprint, batteryFingerJsonString);
+            return super.PrefixClassName(fingerprint, batteryFingerJsonString.toString());
         }
         return null;
     }

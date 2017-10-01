@@ -6,6 +6,7 @@ import com.tokyohot.shibuya.finger.origin.bluetooth.BluetoothFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -42,25 +43,22 @@ public class BluetoothFingerParser extends BaseQObjectParser {
             String mac = bluetoothFinger.getMac();
             List<String> devices = bluetoothFinger.getDevices();
 
-            String devicesJsonArray = "[";
+            StringJoiner devicesJsonArray = new StringJoiner(",", "[", "]");
             for (String device : devices) {
-                devicesJsonArray += "\"" + device + "\"" + ",";
+                devicesJsonArray.add("\"" + device + "\"");
             }
-            devicesJsonArray = devicesJsonArray.substring(0, devicesJsonArray.length() - 1);
-            devicesJsonArray += "]";
 
-            String bluetoothFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"enabled\":" + enabled.toString() +
-                    "," + "\"name\":" + "\"" + name + "\"" +
-                    "," + "\"mac\":" + "\"" + mac + "\"" +
-                    "," + "\"devices\":" + devicesJsonArray +
-                    "}";
+            StringJoiner bluetoothFingerJsonString = new StringJoiner(",", "{", "}");
+            bluetoothFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            bluetoothFingerJsonString.add("\"start\":" + start.toString());
+            bluetoothFingerJsonString.add("\"end\":" + end.toString());
+            bluetoothFingerJsonString.add("\"error\":" + error.toString());
+            bluetoothFingerJsonString.add("\"enabled\":" + enabled.toString());
+            bluetoothFingerJsonString.add("\"name\":\"" + name + "\"");
+            bluetoothFingerJsonString.add("\"mac\":\"" + mac + "\"");
+            bluetoothFingerJsonString.add("\"devices\":" + devicesJsonArray.toString());
 
-            return super.PrefixClassName(fingerprint, bluetoothFingerJsonString);
+            return super.PrefixClassName(fingerprint, bluetoothFingerJsonString.toString());
         }
         return null;
     }

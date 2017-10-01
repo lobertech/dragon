@@ -7,6 +7,7 @@ import com.tokyohot.shibuya.finger.origin.app.AppFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -41,22 +42,19 @@ public class AppFingerParser extends BaseQObjectParser {
             List<AppData> appDataList = appFinger.getDataList();
             Integer appCount = appFinger.getCount();
 
-            String appDataJsonArray = "[";
+            StringJoiner appDataJsonArray = new StringJoiner(",", "[", "]");
             for (AppData appData : appDataList) {
-                appDataJsonArray += parseAppData(appData) + ",";
+                appDataJsonArray.add(parseAppData(appData));
             }
-            appDataJsonArray = appDataJsonArray.substring(0, appDataJsonArray.length() - 1);
-            appDataJsonArray += "]";
 
-            String appFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"appDataList\":" + appDataJsonArray +
-                    "," + "\"appCount\":" + appCount.toString() +
-                    "}";
-            return super.PrefixClassName(fingerprint, appFingerJsonString);
+            StringJoiner appFingerJsonString = new StringJoiner(",", "{", "}");
+            appFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            appFingerJsonString.add("\"start\":" + start.toString());
+            appFingerJsonString.add("\"end\":" + end.toString());
+            appFingerJsonString.add("\"error\":" + error.toString());
+            appFingerJsonString.add("\"appDataList\":" + appDataJsonArray.toString());
+            appFingerJsonString.add("\"appCount\":" + appCount.toString());
+            return super.PrefixClassName(fingerprint, appFingerJsonString.toString());
         }
         return null;
     }
@@ -77,14 +75,13 @@ public class AppFingerParser extends BaseQObjectParser {
         Boolean isSys = appData.getSys();
         Boolean isCard = appData.getCard();
 
-        String jsonAppData = "{" +
-                "\"packageName\":" + "\"" + packageName + "\"" +
-                "," + "\"name\":" + "\"" + name + "\"" +
-                "," + "\"isSys\":" + isSys.toString() +
-                "," + "\"isCard\":" + isCard.toString() +
-                "}";
+        StringJoiner jsonAppData = new StringJoiner(",", "{", "}");
+        jsonAppData.add("\"packageName\":\"" + packageName + "\"");
+        jsonAppData.add("\"name\":\"" + name + "\"");
+        jsonAppData.add("\"isSys\":" + isSys.toString());
+        jsonAppData.add("\"isCard\":" + isCard.toString());
 
-        return jsonAppData;
+        return jsonAppData.toString();
     }
 
 }

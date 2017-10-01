@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.device.DeviceFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -56,33 +57,32 @@ public class DeviceFingerParser extends BaseQObjectParser {
             String incrementalVersion = deviceFinger.getIncrementalVersion();
             String codenameVersion = deviceFinger.getCodenameVersion();
 
-            String deviceFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"device\":" + "\"" + device + "\"" +
-                    "," + "\"product\":" + "\"" + product + "\"" +
-                    "," + "\"cpuAbi2\":" + "\"" + cpuAbi2 + "\"" +
-                    "," + "\"tags\":" + "\"" + tags + "\"" +
-                    "," + "\"display\":" + "\"" + display + "\"" +
-                    "," + "\"board\":" + "\"" + board + "\"" +
-                    "," + "\"fingerprint\":" + "\"" + devicefingerprint + "\"" +
-                    "," + "\"id\":" + "\"" + id + "\"" +
-                    "," + "\"manufacturer\":" + "\"" + manufacturer + "\"" +
-                    "," + "\"user\":" + "\"" + user + "\"" +
-                    "," + "\"bootloader\":" + "\"" + bootloader + "\"" +
-                    "," + "\"hardware\":" + "\"" + hardware + "\"" +
-                    "," + "\"host\":" + "\"" + host + "\"" +
-                    "," + "\"time\":" + time.toString() +
-                    "," + "\"serial\":" + "\"" + serial + "\"" +
-                    "," + "\"releaseVersion\":" + "\"" + releaseVersion + "\"" +
-                    "," + "\"sdkVersion\":" + "\"" + sdkVersion + "\"" +
-                    "," + "\"incrementalVersion\":" + "\"" + incrementalVersion + "\"" +
-                    "," + "\"codenameVersion\":" + "\"" + codenameVersion + "\"" +
-                    "}";
+            StringJoiner deviceFingerJsonString = new StringJoiner(",", "{", "}");
+            deviceFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            deviceFingerJsonString.add("\"start\":" + start.toString());
+            deviceFingerJsonString.add("\"end\":" + end.toString());
+            deviceFingerJsonString.add("\"error\":" + error.toString());
+            deviceFingerJsonString.add("\"device\":\"" + device + "\"");
+            deviceFingerJsonString.add("\"product\":\"" + product + "\"");
+            deviceFingerJsonString.add("\"cpuAbi2\":\"" + cpuAbi2 + "\"");
+            deviceFingerJsonString.add("\"tags\":\"" + tags + "\"");
+            deviceFingerJsonString.add("\"display\":\"" + display + "\"");
+            deviceFingerJsonString.add("\"board\":\"" + board + "\"");
+            deviceFingerJsonString.add("\"fingerprint\":\"" + devicefingerprint + "\"");
+            deviceFingerJsonString.add("\"id\":\"" + id + "\"");
+            deviceFingerJsonString.add("\"manufacturer\":\"" + manufacturer + "\"");
+            deviceFingerJsonString.add("\"user\":\"" + user + "\"");
+            deviceFingerJsonString.add("\"bootloader\":\"" + bootloader + "\"");
+            deviceFingerJsonString.add("\"hardware\":\"" + hardware + "\"");
+            deviceFingerJsonString.add("\"host\":\"" + host + "\"");
+            deviceFingerJsonString.add("\"time\":" + time.toString());
+            deviceFingerJsonString.add("\"serial\":\"" + serial + "\"");
+            deviceFingerJsonString.add("\"releaseVersion\":\"" + releaseVersion + "\"");
+            deviceFingerJsonString.add("\"sdkVersion\":\"" + sdkVersion + "\"");
+            deviceFingerJsonString.add("\"incrementalVersion\":\"" + incrementalVersion + "\"");
+            deviceFingerJsonString.add("\"codenameVersion\":\"" + codenameVersion + "\"");
 
-            return super.PrefixClassName(fingerprint, deviceFingerJsonString);
+            return super.PrefixClassName(fingerprint, deviceFingerJsonString.toString());
         }
         return null;
     }

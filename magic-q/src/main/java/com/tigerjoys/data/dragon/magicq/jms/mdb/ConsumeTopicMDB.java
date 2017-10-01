@@ -1,7 +1,8 @@
 package com.tigerjoys.data.dragon.magicq.jms.mdb;
 
 import com.tigerjoys.data.dragon.tellfake.RecognitionService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Resource;
 import javax.ejb.ActivationConfigProperty;
@@ -24,7 +25,7 @@ public class ConsumeTopicMDB implements MessageListener {
     @Inject
     private RecognitionService recognitionService;
 
-    private final static Logger LOGGER = Logger.getLogger(ConsumeTopicMDB.class.toString());
+    private static final Logger LOGGER = LogManager.getLogger("ConsumeTopicMDB");
 
     @Override
     public void onMessage(Message message) {

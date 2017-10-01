@@ -6,6 +6,7 @@ import com.tokyohot.shibuya.finger.origin.memory.MemoryFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -39,22 +40,19 @@ public class MemoryFingerParser extends BaseQObjectParser {
 
             List<String> dataList = memoryFinger.getDataList();
 
-            String dataListJsonArray = "[";
+            StringJoiner dataListJsonArray = new StringJoiner(",", "[", "]");
             for (String data : dataList) {
-                dataListJsonArray += "\"" + data + "\"" + ",";
+                dataListJsonArray.add("\"" + data + "\"");
             }
-            dataListJsonArray = dataListJsonArray.substring(0, dataListJsonArray.length() - 1);
-            dataListJsonArray += "]";
 
-            String memoryFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"dataList\":" + dataListJsonArray +
-                    "}";
+            StringJoiner memoryFingerJsonString = new StringJoiner(",", "{", "}");
+            memoryFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            memoryFingerJsonString.add("\"start\":" + start.toString());
+            memoryFingerJsonString.add("\"end\":" + end.toString());
+            memoryFingerJsonString.add("\"error\":" + error.toString());
+            memoryFingerJsonString.add("\"dataList\":" + dataListJsonArray);
 
-            return super.PrefixClassName(fingerprint, memoryFingerJsonString);
+            return super.PrefixClassName(fingerprint, memoryFingerJsonString.toString());
         }
         return null;
     }

@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.usb.UsbFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -38,15 +39,14 @@ public class UsbFingerParser extends BaseQObjectParser {
 
             Boolean status = usbFinger.getStatus();
 
-            String usbFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"status\":" + status.toString() +
-                    "}";
+            StringJoiner usbFingerJsonString = new StringJoiner(",", "{", "}");
+            usbFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            usbFingerJsonString.add("\"start\":" + start.toString());
+            usbFingerJsonString.add("\"end\":" + end.toString());
+            usbFingerJsonString.add("\"error\":" + error.toString());
+            usbFingerJsonString.add("\"status\":" + status.toString());
 
-            return super.PrefixClassName(fingerprint, usbFingerJsonString);
+            return super.PrefixClassName(fingerprint, usbFingerJsonString.toString());
         }
         return null;
     }

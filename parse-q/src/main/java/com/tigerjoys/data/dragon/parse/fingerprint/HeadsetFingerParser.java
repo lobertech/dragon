@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.headset.HeadsetFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -38,15 +39,14 @@ public class HeadsetFingerParser extends BaseQObjectParser {
 
             Boolean state = headsetFinger.getState();
 
-            String headsetFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"state\":" + state.toString() +
-                    "}";
+            StringJoiner headsetFingerJsonString = new StringJoiner(",", "{", "}");
+            headsetFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            headsetFingerJsonString.add("\"start\":" + start.toString());
+            headsetFingerJsonString.add("\"end\":" + end.toString());
+            headsetFingerJsonString.add("\"error\":" + error.toString());
+            headsetFingerJsonString.add("\"state\":" + state.toString());
 
-            return super.PrefixClassName(fingerprint, headsetFingerJsonString);
+            return super.PrefixClassName(fingerprint, headsetFingerJsonString.toString());
         }
         return null;
     }

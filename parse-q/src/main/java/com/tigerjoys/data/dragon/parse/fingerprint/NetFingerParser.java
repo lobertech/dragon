@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.net.NetFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -45,22 +46,21 @@ public class NetFingerParser extends BaseQObjectParser {
             Integer networkId = netFinger.getNetworkId();
             Integer linkSpeed = netFinger.getLinkSpeed();
 
-            String netFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"type\":" + "\"" + type + "\"" +
-                    "," + "\"bssid\":" + "\"" + bssid + "\"" +
-                    "," + "\"ssid\":" + "\"" + ssid + "\"" +
-                    "," + "\"mac\":" + "\"" + mac + "\"" +
-                    "," + "\"ip\":" + "\"" + ip + "\"" +
-                    "," + "\"rssi\":" + rssi.toString() +
-                    "," + "\"networkId\":" + networkId.toString() +
-                    "," + "\"linkSpeed\":" + linkSpeed.toString() +
-                    "}";
+            StringJoiner netFingerJsonString = new StringJoiner(",", "{", "}");
+            netFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            netFingerJsonString.add("\"start\":" + start.toString());
+            netFingerJsonString.add("\"end\":" + end.toString());
+            netFingerJsonString.add("\"error\":" + error.toString());
+            netFingerJsonString.add("\"type\":\"" + type + "\"");
+            netFingerJsonString.add("\"bssid\":\"" + bssid + "\"");
+            netFingerJsonString.add("\"ssid\":\"" + ssid + "\"");
+            netFingerJsonString.add("\"mac\":\"" + mac + "\"");
+            netFingerJsonString.add("\"ip\":\"" + ip + "\"");
+            netFingerJsonString.add("\"rssi\":" + rssi.toString());
+            netFingerJsonString.add("\"networkId\":" + networkId.toString());
+            netFingerJsonString.add("\"linkSpeed\":" + linkSpeed.toString());
 
-            return super.PrefixClassName(fingerprint, netFingerJsonString);
+            return super.PrefixClassName(fingerprint, netFingerJsonString.toString());
         }
         return null;
     }

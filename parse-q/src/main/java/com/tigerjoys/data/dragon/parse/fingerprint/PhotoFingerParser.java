@@ -6,6 +6,7 @@ import com.tokyohot.shibuya.finger.origin.photo.PhotoFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -41,24 +42,21 @@ public class PhotoFingerParser extends BaseQObjectParser {
             Integer count = photoFinger.getCount();
             Integer picCount = photoFinger.getPicCount();
 
-            String dataListJsonArray = "[";
+            StringJoiner dataListJsonArray = new StringJoiner(",", "[", "]");
             for (String data : dataList) {
-                dataListJsonArray += "\"" + data + "\"" + ",";
+                dataListJsonArray.add("\"" + data + "\"");
             }
-            dataListJsonArray = dataListJsonArray.substring(0, dataListJsonArray.length() - 1);
-            dataListJsonArray += "]";
 
-            String photoFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"dataList\":" + dataListJsonArray +
-                    "," + "\"count\":" + count.toString() +
-                    "," + "\"picCount\":" + picCount.toString() +
-                    "}";
+            StringJoiner photoFingerJsonString = new StringJoiner(",", "{", "}");
+            photoFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            photoFingerJsonString.add("\"start\":" + start.toString());
+            photoFingerJsonString.add("\"end\":" + end.toString());
+            photoFingerJsonString.add("\"error\":" + error.toString());
+            photoFingerJsonString.add("\"dataList\":" + dataListJsonArray);
+            photoFingerJsonString.add("\"count\":" + count.toString());
+            photoFingerJsonString.add("\"picCount\":" + picCount.toString());
 
-            return super.PrefixClassName(fingerprint, photoFingerJsonString);
+            return super.PrefixClassName(fingerprint, photoFingerJsonString.toString());
         }
         return null;
     }

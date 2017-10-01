@@ -6,6 +6,7 @@ import com.tokyohot.shibuya.finger.origin.cpu.CpuFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -40,23 +41,20 @@ public class CpuFingerParser extends BaseQObjectParser {
             List<String> dataList = cpuFinger.getDataList();
             String baseBand = cpuFinger.getBaseBand();
 
-            String dataListJsonArray = "[";
+            StringJoiner dataListJsonArray = new StringJoiner(",", "[", "]");
             for (String data : dataList) {
-                dataListJsonArray += "\"" + data + "\"" + ",";
+                dataListJsonArray.add("\"" + data + "\"");
             }
-            dataListJsonArray = dataListJsonArray.substring(0, dataListJsonArray.length() - 1);
-            dataListJsonArray += "]";
 
-            String cpuFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"dataList\":" + dataListJsonArray +
-                    "," + "\"baseBand\":" + "\"" + baseBand + "\"" +
-                    "}";
+            StringJoiner cpuFingerJsonString = new StringJoiner(",", "{", "}");
+            cpuFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            cpuFingerJsonString.add("\"start\":" + start.toString());
+            cpuFingerJsonString.add("\"end\":" + end.toString());
+            cpuFingerJsonString.add("\"error\":" + error.toString());
+            cpuFingerJsonString.add("\"dataList\":" + dataListJsonArray);
+            cpuFingerJsonString.add("\"baseBand\":" + "\"" + baseBand + "\"");
 
-            return super.PrefixClassName(fingerprint, cpuFingerJsonString);
+            return super.PrefixClassName(fingerprint, cpuFingerJsonString.toString());
         }
         return null;
     }

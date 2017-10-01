@@ -5,6 +5,7 @@ import com.tokyohot.shibuya.finger.origin.sim.SimFinger;
 
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -44,21 +45,20 @@ public class SimFingerParser extends BaseQObjectParser {
             String voiceMailNumber = simFinger.getVoiceMailNumber();
             String operatorsName = simFinger.getOperatorsName();
 
-            String simFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"id\":" + "\"" + id + "\"" +
-                    "," + "\"phoneNumber\":" + "\"" + phoneNumber + "\"" +
-                    "," + "\"imei\":" + "\"" + imei + "\"" +
-                    "," + "\"imsi\":" + "\"" + imsi + "\"" +
-                    "," + "\"softwareVersion\":" + "\"" + softwareVersion + "\"" +
-                    "," + "\"voiceMailNumber\":" + "\"" + voiceMailNumber + "\"" +
-                    "," + "\"operatorsName\":" + "\"" + operatorsName + "\"" +
-                    "}";
+            StringJoiner simFingerJsonString = new StringJoiner(",", "{", "}");
+            simFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            simFingerJsonString.add("\"start\":" + start.toString());
+            simFingerJsonString.add("\"end\":" + end.toString());
+            simFingerJsonString.add("\"error\":" + error.toString());
+            simFingerJsonString.add("\"id\":\"" + id + "\"");
+            simFingerJsonString.add("\"phoneNumber\":\"" + phoneNumber + "\"");
+            simFingerJsonString.add("\"imei\":\"" + imei + "\"");
+            simFingerJsonString.add("\"imsi\":\"" + imsi + "\"");
+            simFingerJsonString.add("\"softwareVersion\":\"" + softwareVersion + "\"");
+            simFingerJsonString.add("\"voiceMailNumber\":\"" + voiceMailNumber + "\"");
+            simFingerJsonString.add("\"operatorsName\":\"" + operatorsName + "\"");
 
-            return super.PrefixClassName(fingerprint, simFingerJsonString);
+            return super.PrefixClassName(fingerprint, simFingerJsonString.toString());
         }
         return null;
     }

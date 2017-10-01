@@ -7,6 +7,7 @@ import com.tokyohot.shibuya.finger.origin.process.ProcessFinger;
 import javax.enterprise.context.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.UUID;
 
 @RequestScoped
@@ -41,23 +42,20 @@ public class ProcessFingerParser extends BaseQObjectParser {
             Integer count = processFinger.getCount();
             List<ProcessData> dataList = processFinger.getDataList();
 
-            String dataListJsonArray = "[";
+            StringJoiner dataListJsonArray = new StringJoiner(",", "[", "]");
             for (ProcessData processData : dataList) {
-                dataListJsonArray += parseProcessData(processData) + ",";
+                dataListJsonArray.add(parseProcessData(processData));
             }
-            dataListJsonArray = dataListJsonArray.substring(0, dataListJsonArray.length() - 1);
-            dataListJsonArray += "]";
 
-            String processFingerJsonString = "{" +
-                    "\"conversationID\":" + "\"" + conversationID.toString() + "\"" +
-                    "," + "\"start\":" + start.toString() +
-                    "," + "\"end\":" + end.toString() +
-                    "," + "\"error\":" + error.toString() +
-                    "," + "\"count\":" + count.toString() +
-                    "," + "\"dataList\":" + dataListJsonArray +
-                    "}";
+            StringJoiner processFingerJsonString = new StringJoiner(",", "{", "}");
+            processFingerJsonString.add("\"conversationID\":\"" + conversationID.toString() + "\"");
+            processFingerJsonString.add("\"start\":" + start.toString());
+            processFingerJsonString.add("\"end\":" + end.toString());
+            processFingerJsonString.add("\"error\":" + error.toString());
+            processFingerJsonString.add("\"count\":" + count.toString());
+            processFingerJsonString.add("\"dataList\":" + dataListJsonArray);
 
-            return super.PrefixClassName(fingerprint, processFingerJsonString);
+            return super.PrefixClassName(fingerprint, processFingerJsonString.toString());
         }
         return null;
     }
@@ -78,14 +76,13 @@ public class ProcessFingerParser extends BaseQObjectParser {
         Integer pid = processData.getPid();
         String packageName = processData.getPackageName();
 
-        String jsonProcessData = "{" +
-                "\"name\":" + "\"" + name + "\"" +
-                "," + "\"uid\":" + uid.toString() +
-                "," + "\"pid\":" + pid.toString() +
-                "," + "\"packageName\":" + "\"" + packageName + "\"" +
-                "}";
+        StringJoiner jsonProcessData = new StringJoiner(",", "{", "}");
+        jsonProcessData.add("\"name\":\"" + name + "\"");
+        jsonProcessData.add("\"uid\":" + uid.toString());
+        jsonProcessData.add("\"pid\":" + pid.toString());
+        jsonProcessData.add("\"packageName\":\"" + packageName + "\"");
 
-        return jsonProcessData;
+        return jsonProcessData.toString();
     }
     
 }

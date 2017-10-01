@@ -4,8 +4,6 @@ package com.tigerjoys.data.dragon.appclient;
 import com.tigerjoys.data.dragon.appclient.mock.DefaultQMessageMockService;
 import com.tigerjoys.data.dragon.appclient.mock.QMessageMockService;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
