@@ -20,7 +20,9 @@ public class DefaultRecognitionService implements RecognitionService {
      */
     @Override
     public void Gather(Message message) {
-        qMessageCollector.collect(message);
+        synchronized (qMessageCollector) {
+            qMessageCollector.collect(message);
+        }
     }
 
     /**

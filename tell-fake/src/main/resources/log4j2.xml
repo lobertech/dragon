@@ -6,10 +6,13 @@
         </Console>
     </Appenders>
     <Loggers>
-        <!--<Logger name="com.foo.Bar" level="trace" additivity="false">-->
-            <!--<AppenderRef ref="Console"/>-->
-        <!--</Logger>-->
-        <Root level="info">
+        <Logger name="com.tigerjoys.data.dragon.tellfake.collect.assemble.ConversationAssembler" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="com.tigerjoys.data.dragon.tellfake.collect.cache.ConversationCacher" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="error">
             <AppenderRef ref="Console"/>
         </Root>
     </Loggers>

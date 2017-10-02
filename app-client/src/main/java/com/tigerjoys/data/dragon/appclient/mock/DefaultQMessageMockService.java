@@ -39,20 +39,22 @@ public class DefaultQMessageMockService implements QMessageMockService {
         if (context != null) {
             try {
                 logger.info("Enter DefaultQMessageMockService");
-                Conversation conversation = (Conversation) conversationMocker.mock();
-                for (QObjectMocker i : this.fingerPrintMockers) {
-                    FingerPrintMocker fingerMocker = (FingerPrintMocker) i;
-                    fingerMocker.setConversation(conversation);
+                for (int i = 0; i < 5; i++) {
+                    Conversation conversation = (Conversation) conversationMocker.mock();
+                    for (QObjectMocker mocker : this.fingerPrintMockers) {
+                        FingerPrintMocker fingerMocker = (FingerPrintMocker) mocker;
+                        fingerMocker.setConversation(conversation);
 
+                        ObjectMessage message = context.createObjectMessage();
+                        message.setObject(fingerMocker.mock());
+                        messages.add(message);
+                        logger.info(fingerMocker.mock().getClass().getName() + " mocked");
+                    }
                     ObjectMessage message = context.createObjectMessage();
-                    message.setObject(fingerMocker.mock());
+                    message.setObject(conversation);
                     messages.add(message);
-                    logger.info(fingerMocker.mock().getClass().getName() + " mocked");
+                    logger.info(conversation.getClass().getName() + " mocked");
                 }
-                ObjectMessage message = context.createObjectMessage();
-                message.setObject(conversation);
-                messages.add(message);
-                logger.info(conversation.getClass().getName() + " mocked");
             } catch (JMSException e) {
                 e.printStackTrace();
             }
