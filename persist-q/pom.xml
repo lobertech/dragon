@@ -14,9 +14,7 @@
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>dragon-parent</artifactId>
         <groupId>com.tigerjoys.data.dragon</groupId>
@@ -28,8 +26,7 @@
     <packaging>war</packaging>
     <name>WildFly Quickstarts: persist-q</name>
     <description>A starter Java EE 7 webapp project for use on JBoss EAP, generated from the
-        jboss-javaee6-webapp archetype
-    </description>
+        jboss-javaee6-webapp archetype</description>
 
     <url>http://www.jboss.org/products/eap</url>
     <licenses>
@@ -131,6 +128,12 @@
             <artifactId>arquillian-protocol-servlet</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>javax.ejb-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
 
     </dependencies>
 
@@ -235,4 +238,22 @@
         </profile>
 
     </profiles>
+
+    <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.spec</groupId>
+        <artifactId>jboss-javaee-6.0</artifactId>
+        <version>3.0.3.Final</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.ejb</groupId>
+        <artifactId>javax.ejb-api</artifactId>
+        <version>3.2</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 </project>

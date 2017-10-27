@@ -10,7 +10,7 @@
           <element id="file-copy" path="$MAVEN_REPOSITORY$/com/tokyohot/shibuya/contract/1.0-SNAPSHOT/contract-1.0-20170908.022946-3.jar" output-file-name="contract-1.0-SNAPSHOT.jar" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-api:2.9.1" />
           <element id="library" level="project" name="Maven: org.apache.logging.log4j:log4j-core:2.9.1" />
-          <element id="library" level="project" name="Maven: com.jsoniter:jsoniter:0.9.15" />
+          <element id="library" level="project" name="Maven: com.jsoniter:jsoniter:0.9.16" />
         </element>
       </element>
       <element id="directory" name="META-INF">

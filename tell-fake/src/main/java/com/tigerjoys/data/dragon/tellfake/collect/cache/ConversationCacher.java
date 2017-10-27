@@ -10,6 +10,9 @@ import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author welon
+ */
 @Singleton
 public class ConversationCacher implements QObjectCacher<String> {
 

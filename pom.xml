@@ -46,7 +46,7 @@
     <junit.version>4.12</junit.version>
     <junit.jupiter.version>5.0.0</junit.jupiter.version>
     <log4j2.version>2.9.1</log4j2.version>
-    <jsoniter.version>0.9.15</jsoniter.version>
+    <jsoniter.version>0.9.16</jsoniter.version>
     <jar.plugin.version>3.0.2</jar.plugin.version>
     <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
     <version.jboss.bom.eap>7.0.7.GA</version.jboss.bom.eap>

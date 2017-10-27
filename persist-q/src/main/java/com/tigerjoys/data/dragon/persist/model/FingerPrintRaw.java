@@ -1,15 +1,15 @@
 package com.tigerjoys.data.dragon.persist.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 
+/**
+ * @author welon
+ */
 @Entity
 @Table(name = "fingerprint_raw")
-public class FingerPrintRaw implements Serializable {
+public class FingerPrintRaw extends CreateUpdate implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,52 +18,68 @@ public class FingerPrintRaw implements Serializable {
 	@Size(min = 32, max = 36, message = "An uuid must contain 32 or 36 characters")
 	private String id;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String conversationJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String devicedefinitionJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String appfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String batteryfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String bluetoothfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String cpufingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String devicefingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String headsetfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String memoryfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String netfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String photofingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String processfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String screenfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String simfingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String systimefingerJS;
 
-	@Column
+	@Lob
+	@Column(length = 2147483647)
 	private String usbfingerJS;
 
 	public String getId() {
